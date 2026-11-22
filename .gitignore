@@ -1,0 +1,15 @@
+node_modules/
+dist/
+.angular/
+*.log
+.env
+.env.*
+!.env.example
+**/target/
+**/data/
+**/data.mv.db
+**/data.trace.db
+.vscode/
+.idea/
+*.iml
+.DS_Store
