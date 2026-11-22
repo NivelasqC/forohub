@@ -1,0 +1,334 @@
+{
+  "info": {
+    "name": "ForoHub - DSY2205 - Experiencia 2",
+    "_postman_id": "2a6307cd-5a72-489e-91aa-1bcdb00a0001",
+    "description": "21 pruebas API. Ejecuta los pasos en orden. Acciones DELETE modifican datos persistentes.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "01 - Salud usuarios",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "http://localhost:8081/actuator/health",
+        "description": "Prueba API ForoHub"
+      }
+    },
+    {
+      "name": "02 - Listar usuarios",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "http://localhost:8081/api/usuarios",
+        "description": "Prueba API ForoHub"
+      }
+    },
+    {
+      "name": "03 - Registrar usuario",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "url": "http://localhost:8081/api/usuarios",
+        "description": "Prueba API ForoHub",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nombre\": \"Prueba Académica\",\n  \"email\": \"prueba@forohub.cl\",\n  \"password\": \"Prueba123!\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "04 - Login usuario",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "url": "http://localhost:8081/api/usuarios/login",
+        "description": "Prueba API ForoHub",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"admin@forohub.cl\",\n  \"password\": \"Admin123!\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "05 - Modificar usuario 2",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "url": "http://localhost:8081/api/usuarios/2",
+        "description": "Prueba API ForoHub",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"nombre\": \"Camila Torres Modificada\",\n  \"bio\": \"Nueva biografía\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "06 - Recuperar contraseña (simulado)",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "url": "http://localhost:8081/api/usuarios/recuperar",
+        "description": "Prueba API ForoHub",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"email\": \"camila@forohub.cl\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "07 - Listar categorías",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "http://localhost:8082/api/categorias",
+        "description": "Prueba API ForoHub"
+      }
+    },
+    {
+      "name": "08 - Listar temas",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "http://localhost:8082/api/temas",
+        "description": "Prueba API ForoHub"
+      }
+    },
+    {
+      "name": "09 - Filtrar tecnología",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "http://localhost:8082/api/temas?categoria=tecnologia",
+        "description": "Prueba API ForoHub"
+      }
+    },
+    {
+      "name": "10 - Crear tema",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "url": "http://localhost:8082/api/temas",
+        "description": "Prueba API ForoHub",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"titulo\": \"Tema desde Postman\",\n  \"contenido\": \"Contenido de prueba creado desde la colección de Postman.\",\n  \"categoria\": \"tecnologia\",\n  \"autorId\": 2,\n  \"autor\": \"Camila Torres\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "11 - Editar tema 1",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "url": "http://localhost:8082/api/temas/1",
+        "description": "Prueba API ForoHub",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"titulo\": \"Tema actualizado con Postman\",\n  \"contenido\": \"Contenido editado con Spring Boot y H2 desde Postman.\",\n  \"categoria\": \"tecnologia\",\n  \"autorId\": 3,\n  \"autor\": \"Diego Rojas\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "12 - Listar comentarios tema 1",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "http://localhost:8082/api/comentarios?temaId=1",
+        "description": "Prueba API ForoHub"
+      }
+    },
+    {
+      "name": "13 - Comentar tema 1",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json",
+            "type": "text"
+          }
+        ],
+        "url": "http://localhost:8082/api/comentarios",
+        "description": "Prueba API ForoHub",
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"temaId\": 1,\n  \"autorId\": 2,\n  \"autor\": \"Camila Torres\",\n  \"contenido\": \"Comentario creado desde Postman.\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "14 - Moderación: ocultar tema 1",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "X-Rol",
+            "value": "ADMIN",
+            "type": "text"
+          }
+        ],
+        "url": "http://localhost:8083/api/moderacion/temas/1/ocultar",
+        "description": "Prueba API ForoHub"
+      }
+    },
+    {
+      "name": "15 - Comprobar ocultos en foro",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": "http://localhost:8082/api/temas?incluirOcultos=true",
+        "description": "Prueba API ForoHub"
+      }
+    },
+    {
+      "name": "16 - Moderación: restaurar tema 1",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "X-Rol",
+            "value": "ADMIN",
+            "type": "text"
+          }
+        ],
+        "url": "http://localhost:8083/api/moderacion/temas/1/restaurar",
+        "description": "Prueba API ForoHub"
+      }
+    },
+    {
+      "name": "17 - Moderación: ocultar comentario 1",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "X-Rol",
+            "value": "ADMIN",
+            "type": "text"
+          }
+        ],
+        "url": "http://localhost:8083/api/moderacion/comentarios/1/ocultar",
+        "description": "Prueba API ForoHub"
+      }
+    },
+    {
+      "name": "18 - Moderación: restaurar comentario 1",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "X-Rol",
+            "value": "ADMIN",
+            "type": "text"
+          }
+        ],
+        "url": "http://localhost:8083/api/moderacion/comentarios/1/restaurar",
+        "description": "Prueba API ForoHub"
+      }
+    },
+    {
+      "name": "19 - Historial moderación",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "X-Rol",
+            "value": "ADMIN",
+            "type": "text"
+          }
+        ],
+        "url": "http://localhost:8083/api/moderacion/historial",
+        "description": "Prueba API ForoHub"
+      }
+    },
+    {
+      "name": "20 - Borrar comentario 2",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": "http://localhost:8082/api/comentarios/2",
+        "description": "Prueba API ForoHub"
+      }
+    },
+    {
+      "name": "21 - Borrar usuario 3",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": "http://localhost:8081/api/usuarios/3",
+        "description": "Prueba API ForoHub"
+      }
+    }
+  ]
+}

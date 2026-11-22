@@ -1,0 +1,33 @@
+name: Publicar contenedores ForoHub (GHCR)
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+  packages: write
+jobs:
+  images:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - {name: web, context: frontend}
+          - {name: usuarios, context: backend/usuarios-service}
+          - {name: foro, context: backend/foro-service}
+          - {name: moderacion, context: backend/moderacion-service}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Normalizar propietario
+        shell: bash
+        run: echo "OWNER=${GITHUB_REPOSITORY_OWNER,,}" >> "$GITHUB_ENV"
+      - uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - uses: docker/build-push-action@v6
+        with:
+          context: ./${{ matrix.context }}
+          push: true
+          tags: ghcr.io/${{ env.OWNER }}/forohub-${{ matrix.name }}:latest
