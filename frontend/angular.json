@@ -11,11 +11,53 @@
       "architect": {
         "build": {
           "builder": "@angular/build:application",
-          "options": {"outputPath": "dist/forohub", "index": "src/index.html", "browser": "src/main.ts", "tsConfig": "tsconfig.app.json", "styles": ["src/styles.css"], "assets": [{"glob": "**/*", "input": "public"}]},
-          "configurations": {"production": {"budgets": [{"type": "initial", "maximumWarning": "1mb", "maximumError": "2mb"}], "outputHashing": "all"}, "development": {"optimization": false, "extractLicenses": false, "sourceMap": true}},
+          "options": {
+            "outputPath": "dist/forohub",
+            "index": "src/index.html",
+            "browser": "src/main.ts",
+            "tsConfig": "tsconfig.app.json",
+            "styles": [
+              "node_modules/bootstrap/dist/css/bootstrap.min.css",
+              "src/styles.css"
+            ],
+            "assets": [
+              {
+                "glob": "**/*",
+                "input": "public"
+              }
+            ]
+          },
+          "configurations": {
+            "production": {
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "1mb",
+                  "maximumError": "2mb"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "optimization": false,
+              "extractLicenses": false,
+              "sourceMap": true
+            }
+          },
           "defaultConfiguration": "production"
         },
-        "serve": {"builder": "@angular/build:dev-server", "configurations": {"production": {"buildTarget": "forohub:build:production"}, "development": {"buildTarget": "forohub:build:development"}}, "defaultConfiguration": "development"}
+        "serve": {
+          "builder": "@angular/build:dev-server",
+          "configurations": {
+            "production": {
+              "buildTarget": "forohub:build:production"
+            },
+            "development": {
+              "buildTarget": "forohub:build:development"
+            }
+          },
+          "defaultConfiguration": "development"
+        }
       }
     }
   }
