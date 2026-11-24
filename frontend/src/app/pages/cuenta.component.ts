@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+﻿import { Component, inject, signal } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService, CLAVE_SEGURA } from '../services/auth.service';
@@ -9,7 +9,7 @@ const email=Validators.email; const required=Validators.required;
  <label class="form-label mt-3" for="password">Contraseña</label><input id="password" type="password" class="form-control" formControlName="password" autocomplete="current-password" placeholder="Tu contraseña"/><small class="invalid-message">{{mensajeCampo('password')}}</small>
  @if(error()){<div role="alert" class="alert alert-danger mt-3">{{error()}}</div>}
  <div class="text-end mt-2"><a routerLink="/recuperar" class="text-link">¿Olvidaste tu contraseña?</a></div><button class="btn btn-primary w-100 mt-4" type="submit">Ingresar →</button></form>
- <p class="form-bottom">¿No tienes cuenta? <a routerLink="/registro">Regístrate gratis</a></p><div class="demo-info"><strong>Accesos de demostración</strong><p><b>Usuario:</b> camila@forohub.cl / Usuario123!</p><p><b>Admin:</b> admin@forohub.cl / Admin123!</p></div>
+ <p class="form-bottom">¿No tienes cuenta? <a routerLink="/registro">Regístrate gratis</a></p><div class="demo-info"><strong>Accesos de demostración</strong><p><b>Usuario:</b> camila&#64;forohub.cl / Usuario123!</p><p><b>Admin:</b> admin&#64;forohub.cl / Admin123!</p></div>
  </div></div></div>`})
 export class LoginComponent {
  private readonly fb=inject(FormBuilder);private readonly auth=inject(AuthService);private readonly router=inject(Router);readonly error=signal('');submitted=false;
@@ -42,3 +42,4 @@ export class RecuperarComponent {private readonly fb=inject(FormBuilder);readonl
  <form [formGroup]="form" (ngSubmit)="guardar()"><label class="form-label" for="nombreP">Nombre para mostrar</label><input id="nombreP" class="form-control" formControlName="nombre"/><label for="bio" class="form-label mt-3">Biografía</label><textarea id="bio" class="form-control" rows="4" formControlName="bio" placeholder="Cuéntanos algo sobre ti..."></textarea>
  @if(guardado()){<div class="alert alert-success mt-3" role="status">Perfil actualizado correctamente.</div>}<button type="submit" class="btn btn-primary mt-4">Guardar cambios</button> <a routerLink="/" class="btn btn-outline-secondary mt-4">Volver</a></form></div></div>`})
 export class PerfilComponent {readonly auth=inject(AuthService);private readonly fb=inject(FormBuilder);readonly guardado=signal(false);readonly form=this.fb.nonNullable.group({nombre:[this.auth.actual()?.nombre??'',[required,Validators.minLength(3),Validators.maxLength(60)]],bio:[this.auth.actual()?.bio??'',[Validators.maxLength(250)]]});guardar(){if(this.form.invalid){this.form.markAllAsTouched();return;}const {nombre,bio}=this.form.getRawValue();this.auth.actualizar(nombre,bio);this.guardado.set(true);}}
+
